@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% extends 'base.html' %}
+  </head>
+  <body>
+    {%block content %}
+    <br>
+    <div class="container" style="border-bottom:1px solid #cecece;">
+      <h1 class="display-4">Backtest</h1>
+      <div class="row">
+        <div class="col">
+          <br>
+          <form method='POST' action="/test/"> {% csrf_token %}
+            {{form.as_p}}
+            <input type='submit' value='Test'/>
+          </form>
+          <br>
+        </div>
+      </div>
+    </div>
+    <div class="container" style="border-bottom:1px solid #cecece;">
+      <br>
+      <div class="row">
+        <div class="col">
+          <h1 class="display-4">Results</h1>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Final balance: {{final_balance}}</li>
+            <li class="list-group-item">PnL: {{final_pnl}}</li>
+          </ul>
+          <br>
+        </div>
+        <div class="col">
+          <h1 class="display-4">Params</h1>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Confidence: {{object.confidence}}</li>
+            <li class="list-group-item">Risk: {{object.risk}}</li>
+            <li class="list-group-item">Reward: {{object.reward}}</li>
+            <li class="list-group-item">Starting balance: 10000</li>
+          </ul>
+          <br>
+        </div>
+      </div>
+      <br>
+    </div>
+    <br>
+    <div class="container" style="border-bottom:1px solid #cecece;">
+      <h1 class="display-4">Equity</h1> 
+      {% autoescape off %}{{ display_equity }}{% endautoescape %}
+    </div>
+    <br>
+    <div class="container" style="border-bottom:1px solid #cecece;">
+      <h1 class="display-4">Executed Trades</h1> 
+      {% autoescape off %}{{ display_trades }}{% endautoescape %}
+    </div>
+    <br>
+    <div class="container" style="border-bottom:1px solid #cecece;">
+      <br>
+      {% autoescape off %}{{ trades }}{% endautoescape %}
+      <br>
+    </div>
+    {% endblock %}
+  </body>
+</html>
+
+

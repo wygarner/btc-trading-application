@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% extends 'base.html' %}
+  </head>
+  <body>
+    {%block content %}
+    <br>
+    <div class="container" style="border-bottom:1px solid #cecece;">
+      <h1 class="display-4">Bot</h1>
+      <div class="row">
+        <div class="col">
+          <br>
+          <form method='POST' action="/run_bot/"> {% csrf_token %}
+            {{form.as_p}}
+            <input type='submit' value='Run'/>
+          </form>
+          <br>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </body>
+</html>

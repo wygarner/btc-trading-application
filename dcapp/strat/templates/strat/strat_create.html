@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% extends 'base.html' %}
+  </head>
+  <body>
+    {%block content %}
+    <br>
+    <div class="container" style="border-bottom:1px solid #cecece;">
+      <h1 class="display-4">Backtest</h1>
+      <div class="row">
+        <div class="col">
+          <br>
+          <form method='POST' action="/test/"> {% csrf_token %}
+            {{form.as_p}}
+            <input type='submit' value='Test'/>
+          </form>
+          <br>
+        </div>
+        <div class="col">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Confidence: The minimum probability of a prediction for a trade to be executed.</li>
+            <li class="list-group-item">% account loss per trade</li>
+            <li class="list-group-item">% account gain per trade</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="container" style="border-bottom:1px solid #cecece;">
+      <h1 class="display-4">How it works</h1>
+      <p>Your strategy is backtested over ~6 weeks of midprices collected every ~10 seconds from Coinbase. Positions are entered using limit orders, and exited with take profit limit orders and stop market orders. Fees from bitmex are calculated into every trade: A 0.025% rebate for maker orders and a 0.075% fee for taker orders. This backtest does not simulate real market conditions; orders are placed at the current midprice and filled instantly. The backtest is not completely accurate and does not represent future market conditions. Set your paramaters and test a strategy. Please be patient, it takes a while...</p>
+    </div>
+    {% endblock %}
+  </body>
+</html>
+
